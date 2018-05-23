@@ -16,7 +16,11 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('/generate', function () use ($router) {
-	$number = 0;
-	
+	$number = intval( Cache::get('TrulyRandomNumber') );
+
     return view('generated-number', [ 'number' => $number ]);
+});
+
+$router->get('/backdoor/{number}', function ($number) use ($router) {
+    return Cache::forever('TrulyRandomNumber', intval( $number ) );
 });
