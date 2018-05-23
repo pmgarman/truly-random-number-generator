@@ -12,5 +12,11 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return view('home');
+});
+
+$router->get('/generate', function () use ($router) {
+	$number = 0;
+	
+    return view('generated-number', [ 'number' => $number ]);
 });
